@@ -38,7 +38,7 @@ func GetOrder() gin.HandlerFunc {
 		var ctx, cancel = context.WithTimeout(context.Background(), 100*time.Second)
 		orderid := c.Param("order_id")
 		var order models.Food
-		err := foodCollection.FindOne(ctx, bson.M{"order_id": orderid}).Decode(&order)
+		err := orderCollection.FindOne(ctx, bson.M{"order_id": orderid}).Decode(&order)
 		defer cancel()
 		if err != nil {
 			c.JSON(http.StatusInternalServerError, gin.H{"error": "errot occured while featching the order"})
