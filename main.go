@@ -3,13 +3,15 @@ package main
 import (
 	"os"
 
+	"golang-restaurant-management/datebase"
+
 	"golang-restaurant-management/routes"
 
 	"github.com/gin-gonic/gin"
 	"go.mongodb.org/mongo-driver/mongo"
 )
 
-var foodCollection *mongo.Collection = datebase.OpenCollection(database.Client, "food")
+var foodCollection *mongo.Collection = datebase.OpenCollection(datebase.Client, "food")
 
 func main() {
 
@@ -22,7 +24,6 @@ func main() {
 	router.Use(gin.Logger())
 	routes.UserRoutes(router)
 
-	router.Use(middleware.Authentication())
 	routes.FoodRoutes(router)
 	routes.MenuRoutes(router)
 	routes.TableRoutes(router)

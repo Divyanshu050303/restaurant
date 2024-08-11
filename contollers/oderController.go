@@ -98,7 +98,7 @@ func UpdateOrder() gin.HandlerFunc {
 			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 			return
 		}
-		if order.Order_id != nil {
+		if order.Table_id != nil {
 			err := menuCollection.FindOne(ctx, bson.M{"table_id": table.Table_id}).Decode(&table)
 			defer cancel()
 

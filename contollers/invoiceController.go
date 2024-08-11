@@ -63,7 +63,7 @@ func GetInvoice() gin.HandlerFunc {
 		invoiceView.Payment_due_date = invoice.Payment_due_date
 
 		invoiceView.Payment_method = "null"
-		if len(invoiceView.Payment_method) == 0 {
+		if invoice.Payment_method != nil {
 			invoiceView.Payment_method = *invoice.Payment_status
 
 		}
